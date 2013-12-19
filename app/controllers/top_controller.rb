@@ -3,6 +3,6 @@ class TopController < ApplicationController
 
   # トップ
   def index
-    @tweets = Tweet.includes(:sentence).last(50)
+    @tweets = Tweet.order(created_at: :desc).includes(:sentence).last(50)
   end
 end

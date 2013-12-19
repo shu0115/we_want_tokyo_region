@@ -4,7 +4,7 @@ class Tweet < ActiveRecord::Base
   private
 
   ## ランダムツイート
-  # Tweet.random_tweet
+  # ruby bin/rails runner "Tweet.random_tweet"
   def self.random_tweet
     result = ''
     auth = Authentication.where(nickname: 'tokyo_region').first
