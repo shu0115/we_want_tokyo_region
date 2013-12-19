@@ -9,8 +9,7 @@
     = link_to Settings.app_name, :root
     - if signed_in?
       = render partial: '/layouts/user_icon', locals: { user: current_user, size: "18x18", klass: "margin_minus2" }
-      = link_to "Top", root_path
-      = link_to "文言追加", sentences_path
+      = link_to "文言一覧", sentences_path
       = link_to "Logout", logout_path
     - else
       Login:

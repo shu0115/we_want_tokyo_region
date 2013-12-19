@@ -6,6 +6,7 @@ class Tweet < ActiveRecord::Base
   ## ランダムツイート
   # Tweet.random_tweet
   def self.random_tweet
+    result = ''
     auth = Authentication.where(nickname: 'tokyo_region').first
 
     # Twitter接続設定
@@ -18,8 +19,21 @@ class Tweet < ActiveRecord::Base
 
     ids      = Sentence.pluck(:id)
     sentence = Sentence.find_by(id: ids.sample)
+    hash_tag = Rails.env.production? ? '#heroku' : ''
 
-    # Twitter投稿
-    client.update("#{sentence.words}")
+    begin
+      # Twitter投稿
+      client.update("#{hash_tag} #{sentence.words}")
+      result = 'Success'
+    rescue => e
+      puts "[ ---------- e ---------- ]" ; e.tapp ;
+      result = e.message
+    end
+
+    Tweet.create(
+      sentence_id: sentence.id,
+      body:        "#heroku #{sentence.words}",
+      result:      result
+    )
   end
 end

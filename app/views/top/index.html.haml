@@ -1,2 +1,28 @@
-%h1
-  Welcome to #{Settings.app_name}.
+%h1 #{Settings.app_name}
+
+※2:00〜8:00まではサイト停止します。
+
+%h2 最新ツイート50件
+
+%p
+  ※ツイートは全てこちら
+  = link_to '@tokyo_region', 'https://twitter.com/tokyo_region', target: '_blank'
+  のアカウントからつぶやかれます。
+
+%p= link_to '#heroku', 'https://twitter.com/search?q=%23heroku&src=typd&f=realtime', target: '_blank'
+
+%table
+  %tr
+    %th User
+    %th Words
+    %th Result
+
+  - @tweets.each do |tweet|
+    %tr
+      %td= render partial: '/layouts/user_icon', locals: { user: tweet.sentence.try(:user), size: "18x18", klass: "margin_minus2" }
+      %td= tweet.body
+      %td= tweet.result
+
+%br
+
+= link_to '文言追加', new_sentence_path

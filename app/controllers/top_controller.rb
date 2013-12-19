@@ -3,5 +3,6 @@ class TopController < ApplicationController
 
   # トップ
   def index
+    @tweets = Tweet.includes(:sentence).last(50)
   end
 end
