@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20000102000000) do
+ActiveRecord::Schema.define(version: 20131219105541) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(version: 20000102000000) do
   end
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
+
+  create_table "sentences", force: true do |t|
+    t.integer  "user_id"
+    t.text     "words"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sentences", ["user_id"], name: "index_sentences_on_user_id"
+
+  create_table "tweets", force: true do |t|
+    t.integer  "sentence_id"
+    t.text     "body"
+    t.text     "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tweets", ["sentence_id"], name: "index_tweets_on_sentence_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

@@ -1,0 +1,10 @@
+%p
+  %b User:
+  = render partial: '/layouts/user_icon', locals: { user: @sentence.user, size: "18x18", klass: "margin_minus2" }
+%p
+  %b Words:
+  = @sentence.words
+
+= link_to 'Edit', edit_sentence_path(@sentence)
+\|
+= link_to 'Back', sentences_path

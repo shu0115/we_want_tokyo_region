@@ -1,0 +1,21 @@
+%h1 Listing sentences
+
+%table
+  %tr
+    %th User
+    %th Words
+    %th
+    %th
+    %th
+
+  - @sentences.each do |sentence|
+    %tr
+      %td= render partial: '/layouts/user_icon', locals: { user: sentence.user, size: "18x18", klass: "margin_minus2" }
+      %td= sentence.words
+      %td= link_to 'Show', sentence
+      %td= link_to 'Edit', edit_sentence_path(sentence)
+      %td= link_to 'Destroy', sentence, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Sentence', new_sentence_path

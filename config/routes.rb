@@ -1,4 +1,6 @@
 WeWantTokyoRegion::Application.routes.draw do
+  resources :sentences
+
   root to: 'top#index'
 
   # For OmniAuth

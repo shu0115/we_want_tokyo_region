@@ -44,6 +44,9 @@ gem 'tapp'
 gem 'awesome_print'
 gem "exception_notification"
 
+# Twitter
+gem "twitter"
+
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
